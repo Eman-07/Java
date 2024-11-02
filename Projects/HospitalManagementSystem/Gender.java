@@ -2,6 +2,11 @@ package HospitalManagementSystem;
 
 public enum Gender {
 
-    MALE,
-    FEMALE;
+    MALE("M"),
+    FEMALE("F");
+
+    String type;
+    Gender(String type) {
+        this.type = type;
+    }
 }
