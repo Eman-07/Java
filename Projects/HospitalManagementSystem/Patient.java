@@ -80,7 +80,7 @@ public class Patient {
     }
 
 
-    public Patient[] manage(Patient[] patients) {
+    public Patient[] manage(Patient[] patients, Wards[] wards) {
         System.out.println("Patient Management Menu");
         System.out.printf("""
                 1)Add Patient
