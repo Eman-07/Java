@@ -1,8 +1,11 @@
 package com.example.fxpractice_1;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.*;
+import javafx.scene.image.*;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.paint.*;
+import javafx.stage.*;
 
 import java.util.Scanner;
 
@@ -19,10 +22,11 @@ public class ClassA extends Application {
 //        Stage newStage = new Stage(); // we can create new one
 
 
-         stage.setTitle("ClassA");
 
 
-        Scene scene = new Scene(); // 
+
+        Group root = new Group();
+        Scene scene = new Scene(root, Color.BLACK); //
 /* Root Nodes
 In JavaFX, a Root Node is the top-level node in a scene graph. A scene graph is a
 hierarchical structure that contains all the nodes (elements) of the user interface.
@@ -82,7 +86,24 @@ Feel free to ask more if you need deeper insights or specific examples!
 
  */
 
-         stage.show();
+
+        scene.setCursor(Cursor.CROSSHAIR);
+        stage.setScene(scene);
+
+//        Image img = new Image("logo.png");
+
+//        stage.getIcons().add(img);
+        stage.setWidth(500);
+        stage.setHeight(500);
+
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("Press e to exit");
+        stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("e"));
+
+
+        stage.setResizable(false);
+        stage.setTitle("ClassA");
+        stage.show();
     }
 
 
