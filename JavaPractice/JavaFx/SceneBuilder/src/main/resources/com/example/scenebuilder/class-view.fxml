@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scenebuilder.controller">
+   <children>
+      <Button layoutX="505.0" layoutY="294.0" mnemonicParsing="false" onAction="#up" text="up" />
+      <Button layoutX="496.0" layoutY="343.0" mnemonicParsing="false" onAction="#down" text="down" />
+      <Button layoutX="426.0" layoutY="343.0" mnemonicParsing="false" onAction="#left" text="left\" />
+      <Button layoutX="576.0" layoutY="343.0" mnemonicParsing="false" onAction="#right" text="right" />
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="290.0" layoutY="161.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+   </children>
+</AnchorPane>

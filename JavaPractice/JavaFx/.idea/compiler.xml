@@ -9,5 +9,8 @@
         <module name="FxPractice_1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SceneBuilder_ActionListener" target="23" />
+    </bytecodeTargetLevel>
   </component>
 </project>
