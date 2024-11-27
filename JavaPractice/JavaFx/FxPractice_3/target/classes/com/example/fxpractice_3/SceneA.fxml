@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@SceneA.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxpractice_3.ClassAController">
+   <children>
+      <Label layoutX="203.0" layoutY="33.0" text="This is A" />
+      <Button layoutX="244.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchB" text="Switch" />
+   </children>
+</AnchorPane>

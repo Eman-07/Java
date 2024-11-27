@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/JavaFx.iml" filepath="$PROJECT_DIR$/.idea/JavaFx.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SceneBuilderxActionListener/SceneBuilderxActionListener.iml" filepath="$PROJECT_DIR$/SceneBuilderxActionListener/SceneBuilderxActionListener.iml" />
     </modules>
   </component>
 </project>
