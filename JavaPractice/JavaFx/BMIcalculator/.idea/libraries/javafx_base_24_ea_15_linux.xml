@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="javafx-base-24-ea+15-linux">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/Compressed/jar_files/javafx-base-24-ea+15-linux.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Compressed/jar_files/javafx-graphics-24-ea+15-linux.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Compressed/jar_files/javafx-media-24-ea+15-linux.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

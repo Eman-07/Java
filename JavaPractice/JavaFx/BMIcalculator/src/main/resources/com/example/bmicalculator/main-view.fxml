@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.bmicalculator.MainController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bmicalculator.MainController">
+   <children>
+      <Label layoutX="93.0" layoutY="20.0" text="Body Mass Index Calculator" textFill="#e80808">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ageField" layoutX="113.0" layoutY="124.0" />
+      <Label layoutX="34.0" layoutY="129.0" text="Age" />
+      <Label layoutX="20.0" layoutY="179.0" text="Weight(KG)" />
+      <Label layoutX="21.0" layoutY="220.0" text="Height(cm)" />
+      <TextField fx:id="weightField" layoutX="113.0" layoutY="174.0" />
+      <TextField fx:id="heightField" layoutX="113.0" layoutY="215.0" />
+      <Button layoutX="220.0" layoutY="264.0" mnemonicParsing="false" onAction="#calculate" text="Calculate" />
+      <Button layoutX="142.0" layoutY="264.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="522.0" layoutY="355.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <Label layoutX="322.0" layoutY="119.0" />
+      <Label fx:id="missingNotifier" layoutX="322.0" layoutY="129.0" text="sssssssssss" />
+   </children>
 </AnchorPane>
