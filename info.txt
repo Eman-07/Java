@@ -1,1 +1,22 @@
- 
+
+<java.io>
+
+meta data 
+>File "java class used to read metadata of a file",it does not create file there is no file whose path is given
+		=file.exists() , file.isDirectory() ,file.isHidden() , file.getAbsolutePath()
+		=file.createNewFile()
+		=file.mkdir()
+
+file reader - java class :use to read a file , reads character by character
+ BufferedReader is used when file is larger ,
+>FileWriter "java class used to write in a file"
+
+>BufferedWriter "java class used to write large data in file"
+
+>OutputStream , 
+
+>ObjectOutputStream , ObjectInputStream
+
+>OutputStream is used to read sort of continuous data like a video
+
+>
