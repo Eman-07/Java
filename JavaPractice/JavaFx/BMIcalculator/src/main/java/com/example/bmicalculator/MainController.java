@@ -19,6 +19,10 @@ public class MainController {
     private TextField weightField;
     @FXML
     private Label missingNotifier;
+    @FXML
+    private Label missingNotifier1;
+    @FXML
+    private Label missingNotifier2;
 
 
 
@@ -42,38 +46,50 @@ public class MainController {
     }
 
 
-    public Boolean isEmpty(TextField age,TextField weight ,TextField height) {
+    public Boolean isEmptyAndNumeric(TextField age, TextField weight, TextField height) {
 
         missingNotifier.setVisible(false);
-        if (!age.getText().isEmpty() && !weight.getText().isEmpty() && !height.getText().isEmpty()) {
-            System.out.println("all filled");
+        missingNotifier1.setVisible(false);
+        missingNotifier2.setVisible(false);
+
+
+        // Flag to track validation
+        boolean isValid = true;
+
+        // Validate age
+        if (age.getText().isEmpty() || !age.getText().matches("\\d+")) {
+            missingNotifier.setVisible(true);
+            missingNotifier.setText("Please enter a valid numeric age");
+            isValid = false;
+        }
+
+        // Validate weight
+        if (weight.getText().isEmpty() || !weight.getText().matches("\\d+")) {
+            missingNotifier1.setVisible(true);
+            missingNotifier1.setText("Please enter a valid numeric weight");
+            isValid = false;
+        }
+
+        // Validate height
+        if (height.getText().isEmpty() || !height.getText().matches("\\d+")) {
+            missingNotifier2.setVisible(true);
+            missingNotifier2.setText("Please enter a valid numeric height");
+            isValid = false;
+        }
+
+        // If everything is valid
+        if (isValid) {
+            System.out.println("All fields are filled and numeric");
             return true;
         }
-        System.out.println("empty");
 
-        if (age.getText().isEmpty() || ageField.getText().) {
-            missingNotifier.setVisible(true);
-            missingNotifier.setLayoutX(322);
-            missingNotifier.setLayoutY(129);
-            missingNotifier.setText("Please enter a valid age");
-        }
-        if (weight.getText().isEmpty()) {
-            missingNotifier.setVisible(true);
-            missingNotifier.setLayoutX(316);
-            missingNotifier.setLayoutY(179);
-            missingNotifier.setText("Please enter a valid weight");
-        }
-        if (height.getText().isEmpty()) {
-            missingNotifier.setVisible(true);
-            missingNotifier.setLayoutX(313);
-            missingNotifier.setLayoutY(220);
-            missingNotifier.setText("Please enter a valid height");
-        }
-
+        // If there's any error
+        System.out.println("Validation failed");
         return false;
     }
 
+
     public void calculate(ActionEvent event) {
-       isEmpty(ageField,weightField,heightField);
+       isEmptyAndNumeric(ageField,weightField,heightField);
     }
 }

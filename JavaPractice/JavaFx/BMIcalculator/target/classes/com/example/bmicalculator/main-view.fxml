@@ -25,6 +25,8 @@
       <Button layoutX="142.0" layoutY="264.0" mnemonicParsing="false" text="Cancel" />
       <Button layoutX="522.0" layoutY="355.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <Label layoutX="322.0" layoutY="119.0" />
-      <Label fx:id="missingNotifier" layoutX="322.0" layoutY="129.0" text="sssssssssss" />
+      <Label fx:id="missingNotifier" layoutX="314.0" layoutY="130.0" text="    " />
+      <Label fx:id="missingNotifier1" layoutX="314.0" layoutY="179.0" text="s" textFill="#e80a0a" />
+      <Label fx:id="missingNotifier2" layoutX="313.0" layoutY="220.0" text="d" textFill="#e80909" />
    </children>
 </AnchorPane>
