@@ -117,21 +117,13 @@ public class MainController {
             double bmi = weight / (heightInMeters * heightInMeters);
 
 
-           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-           alert.setTitle("Calculated BMI");
-           alert.setHeaderText(null);
-
-
-           alert.setContentText(String.format("Your BMI is %.2f",bmi));
-           alert.showAndWait();
-
-
-
-           Image img = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/formula.png"));
-           ImageView imageView2 = new ImageView(img);
-           imageView2.setFitHeight(150);
-           imageView2.setFitWidth(150);
-           alert.setGraphic(imageView2);
+            alertModifier(bmi);
+//
+//           Image img = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/formula.png"));
+//           ImageView imageView2 = new ImageView(img);
+//           imageView2.setFitHeight(150);
+//           imageView2.setFitWidth(150);
+//           alert.setGraphic(imageView2);
 
 
        }
@@ -159,7 +151,32 @@ public class MainController {
     }
 
 
-    public void alertModifier(Alert alert){
+    public void alertModifier(Double bmi){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Calculated BMI");
+
+        String classification;
+        if (bmi < 16) {
+            classification = "Severe Thinness";
+        } else if (bmi >= 16 && bmi < 17) {
+            classification = "Moderate Thinness";
+        } else if (bmi >= 17 && bmi < 18.5) {
+            classification = "Mild Thinness";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            classification = "Normal";
+        } else if (bmi >= 25 && bmi < 30) {
+            classification = "Overweight";
+        } else if (bmi >= 30 && bmi < 35) {
+            classification = "Obese Class I";
+        } else if (bmi >= 35 && bmi < 40) {
+            classification = "Obese Class II";
+        } else {
+            classification = "Obese Class III";
+        }
+
+        alert.setContentText(String.format("Your BMI is %.2f\nStatus : %s",bmi,classification));
+        alert.showAndWait();
+
 
     }
 }
