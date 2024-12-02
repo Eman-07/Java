@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -30,5 +31,7 @@
       <Label fx:id="missingNotifier2" layoutX="313.0" layoutY="220.0" textFill="#e80909" />
       <Button layoutX="34.0" layoutY="355.0" mnemonicParsing="false" onAction="#formula" text="BMI Formula" />
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="376.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+      <AmbientLight color="CHARTREUSE" layoutX="566.0" layoutY="29.0" lightOn="true" />
+      <AmbientLight fx:id="light" color="CHARTREUSE" layoutX="544.0" layoutY="29.0" />
    </children>
 </AnchorPane>

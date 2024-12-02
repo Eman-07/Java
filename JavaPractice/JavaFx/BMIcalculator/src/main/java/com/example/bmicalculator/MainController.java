@@ -155,25 +155,43 @@ public class MainController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Calculated BMI");
 
+        Image image;
+
         String classification;
         if (bmi < 16) {
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/underWeight.png"));
             classification = "Severe Thinness";
         } else if (bmi >= 16 && bmi < 17) {
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/underWeight.png"));
             classification = "Moderate Thinness";
         } else if (bmi >= 17 && bmi < 18.5) {
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/underWeight.png"));
             classification = "Mild Thinness";
         } else if (bmi >= 18.5 && bmi < 25) {
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/normalWeight.png"));
             classification = "Normal";
         } else if (bmi >= 25 && bmi < 30) {
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/overWeight.png"));
             classification = "Overweight";
         } else if (bmi >= 30 && bmi < 35) {
             classification = "Obese Class I";
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/obese.png"));
+
         } else if (bmi >= 35 && bmi < 40) {
             classification = "Obese Class II";
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/extremeObese.png"));
+
         } else {
             classification = "Obese Class III";
+            image = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/extremeObese.png"));
         }
 
+
+        ImageView alertImage = new ImageView(image);
+        alertImage.setFitHeight(200);
+        alertImage.setFitWidth(200);
+        alert.setHeaderText(null);
+        alert.setGraphic(alertImage);
         alert.setContentText(String.format("Your BMI is %.2f\nStatus : %s",bmi,classification));
         alert.showAndWait();
 
