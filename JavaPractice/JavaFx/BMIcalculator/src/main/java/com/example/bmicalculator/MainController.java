@@ -7,7 +7,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.awt.*;
 import java.util.Optional;
 
 public class MainController {
@@ -23,6 +26,8 @@ public class MainController {
     private Label missingNotifier1;
     @FXML
     private Label missingNotifier2;
+    @FXML
+    private ImageView imageView;
 
 
 
@@ -90,6 +95,26 @@ public class MainController {
 
 
     public void calculate(ActionEvent event) {
+        imageView.setImage(null);
        isEmptyAndNumeric(ageField,weightField,heightField);
+
+    }
+
+
+
+    public void reset(){
+        ageField.setText("");
+        weightField.setText("");
+        heightField.setText("");
+        missingNotifier.setVisible(false);
+        missingNotifier1.setVisible(false);
+        missingNotifier2.setVisible(false);
+    }
+
+
+    public void formula(ActionEvent event) {
+        reset();
+        Image formula = new Image("C:\\Users\\Muhammad Eman\\Desktop\\GitRepos\\Java\\JavaPractice\\JavaFx\\BMIcalculator\\src\\main\\java\\com\\example\\bmicalculator\\formula.png");
+        imageView.setImage(formula);
     }
 }
