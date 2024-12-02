@@ -62,27 +62,35 @@ public class MainController {
         // Validate age (integer)
         if (age.getText().isEmpty() || !age.getText().matches("\\d+")) {
             missingNotifier.setVisible(true);
-            missingNotifier.setText("Please enter a valid numeric age (integer)");
+            missingNotifier.setText("Please enter a positive numeric age (integer)");
+            isValid = false;
+        } else if (Integer.parseInt(age.getText()) <= 0) {
+            missingNotifier.setVisible(true);
+            missingNotifier.setText("Age must be greater than zero");
             isValid = false;
         }
 
         // Validate weight (float)
         if (weight.getText().isEmpty() || !weight.getText().matches("\\d*\\.?\\d+")) {
             missingNotifier1.setVisible(true);
-            missingNotifier1.setText("Please enter a valid numeric weight (float)");
+            missingNotifier1.setText("Please enter a positive numeric weight (float)");
+            isValid = false;
+        } else if (Float.parseFloat(weight.getText()) <= 0) {
+            missingNotifier1.setVisible(true);
+            missingNotifier1.setText("Weight must be greater than zero");
             isValid = false;
         }
 
         // Validate height (float)
-        if (height.getText().isEmpty() || !height.getText().matches("\\d*\\.?\\d+")) {
+        if (height.getText().isEmpty() || !height.getText().matches("\\d+")) {
             missingNotifier2.setVisible(true);
-            missingNotifier2.setText("Please enter a valid numeric height (float)");
+            missingNotifier2.setText("Please enter a positive numeric height (integer)");
+            isValid = false;
+        } else if (Integer.parseInt(heightField.getText()) <= 0) {
+            missingNotifier2.setVisible(true);
+            missingNotifier2.setText("Height must be greater than zero");
             isValid = false;
         }
-
-//        \\d+: Matches one or more digits (used for integer validation).
-//         \\d*\\.?\\d+: Matches an optional sequence of digits before a decimal point,
-//         an optional decimal point, and at least one digit after it (used for float validation).
 
         // If everything is valid
         if (isValid) {
@@ -97,10 +105,36 @@ public class MainController {
 
 
 
-    public void calculate(ActionEvent event) {
-        imageView.setImage(null);
-       isEmptyAndNumeric(ageField,weightField,heightField);
 
+    public void calculate(ActionEvent event) {
+       imageView.setImage(null);
+       if (isEmptyAndNumeric(ageField,weightField,heightField)){
+
+            double weight = Double.parseDouble(weightField.getText());
+            int heightInInches = Integer.parseInt(heightField.getText());
+            double heightInMeters = heightInInches * 0.0254;
+
+            double bmi = weight / (heightInMeters * heightInMeters);
+
+
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle("Calculated BMI");
+           alert.setHeaderText(null);
+
+
+           alert.setContentText(String.format("Your BMI is %.2f",bmi));
+           alert.showAndWait();
+
+
+
+           Image img = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/formula.png"));
+           ImageView imageView2 = new ImageView(img);
+           imageView2.setFitHeight(150);
+           imageView2.setFitWidth(150);
+           alert.setGraphic(imageView2);
+
+
+       }
     }
 
 
@@ -122,5 +156,10 @@ public class MainController {
         missingNotifier2.setVisible(false);
         Image formula = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/formula.png"));
         imageView.setImage(formula);
+    }
+
+
+    public void alertModifier(Alert alert){
+
     }
 }

@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bmicalculator.MainController">
    <children>
       <Label layoutX="93.0" layoutY="20.0" text="Body Mass Index Calculator" textFill="#e80808">
@@ -19,7 +18,7 @@
       <TextField fx:id="ageField" layoutX="113.0" layoutY="124.0" />
       <Label layoutX="34.0" layoutY="129.0" text="Age" />
       <Label layoutX="20.0" layoutY="179.0" text="Weight(KG)" />
-      <Label layoutX="21.0" layoutY="220.0" text="Height(cm)" />
+      <Label layoutX="10.0" layoutY="220.0" text="Height(inches)" />
       <TextField fx:id="weightField" layoutX="113.0" layoutY="174.0" />
       <TextField fx:id="heightField" layoutX="113.0" layoutY="215.0" />
       <Button layoutX="220.0" layoutY="264.0" mnemonicParsing="false" onAction="#calculate" text="Calculate" textFill="#204d20" />
