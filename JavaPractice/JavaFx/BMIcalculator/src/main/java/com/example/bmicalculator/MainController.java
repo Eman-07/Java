@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.awt.*;
 import java.util.Optional;
 
 public class MainController {
@@ -57,30 +56,33 @@ public class MainController {
         missingNotifier1.setVisible(false);
         missingNotifier2.setVisible(false);
 
-
         // Flag to track validation
         boolean isValid = true;
 
-        // Validate age
+        // Validate age (integer)
         if (age.getText().isEmpty() || !age.getText().matches("\\d+")) {
             missingNotifier.setVisible(true);
-            missingNotifier.setText("Please enter a valid numeric age");
+            missingNotifier.setText("Please enter a valid numeric age (integer)");
             isValid = false;
         }
 
-        // Validate weight
-        if (weight.getText().isEmpty() || !weight.getText().matches("\\d+")) {
+        // Validate weight (float)
+        if (weight.getText().isEmpty() || !weight.getText().matches("\\d*\\.?\\d+")) {
             missingNotifier1.setVisible(true);
-            missingNotifier1.setText("Please enter a valid numeric weight");
+            missingNotifier1.setText("Please enter a valid numeric weight (float)");
             isValid = false;
         }
 
-        // Validate height
-        if (height.getText().isEmpty() || !height.getText().matches("\\d+")) {
+        // Validate height (float)
+        if (height.getText().isEmpty() || !height.getText().matches("\\d*\\.?\\d+")) {
             missingNotifier2.setVisible(true);
-            missingNotifier2.setText("Please enter a valid numeric height");
+            missingNotifier2.setText("Please enter a valid numeric height (float)");
             isValid = false;
         }
+
+//        \\d+: Matches one or more digits (used for integer validation).
+//         \\d*\\.?\\d+: Matches an optional sequence of digits before a decimal point,
+//         an optional decimal point, and at least one digit after it (used for float validation).
 
         // If everything is valid
         if (isValid) {
@@ -92,6 +94,7 @@ public class MainController {
         System.out.println("Validation failed");
         return false;
     }
+
 
 
     public void calculate(ActionEvent event) {
@@ -109,12 +112,15 @@ public class MainController {
         missingNotifier.setVisible(false);
         missingNotifier1.setVisible(false);
         missingNotifier2.setVisible(false);
+        imageView.setImage(null);
     }
 
 
     public void formula(ActionEvent event) {
-        reset();
-        Image formula = new Image("C:\\Users\\Muhammad Eman\\Desktop\\GitRepos\\Java\\JavaPractice\\JavaFx\\BMIcalculator\\src\\main\\java\\com\\example\\bmicalculator\\formula.png");
+        missingNotifier.setVisible(false);
+        missingNotifier1.setVisible(false);
+        missingNotifier2.setVisible(false);
+        Image formula = new Image(MainController.class.getResourceAsStream("/com/example/bmicalculator/images/formula.png"));
         imageView.setImage(formula);
     }
 }
