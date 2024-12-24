@@ -94,7 +94,7 @@ public class MainController {
 
         // If everything is valid
         if (isValid) {
-            System.out.println("All fields are filled and numeric");
+//            System.out.println("All fields are filled and numeric");
             return true;
         }
 
