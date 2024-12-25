@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="FxPractice_1" />
         <module name="FxPractice_4" />
+        <module name="FitnessCenter" />
+        <module name="TableView" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
