@@ -12,9 +12,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
     BorderPane layout = new BorderPane();
@@ -27,7 +30,13 @@ public class Main extends Application {
         Button addMemberButton = new Button("Add Member");
         addMemberButton.setOnAction(event -> addMemberForm());
         Button viewMembersButton = new Button("View Members");
-        viewMembersButton.setOnAction(event -> showTable());
+        viewMembersButton.setOnAction(event -> {
+            try {
+                showTable();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         topBox.setSpacing(10);
         topBox.setAlignment(Pos.CENTER);
         topBox.getChildren().addAll(addMemberButton,viewMembersButton);
@@ -127,32 +136,90 @@ public class Main extends Application {
             System.out.println(planType);
 
             membersList.add(new Member(name,planType,date,gender));
+            saveData();
+            nameField.clear();
+            dobPicker.disarm();
         });
         cancelButton.setOnAction(event -> layout.setCenter(null));
     }
 
 
-    public void showTable() {
-        TableView tableView = new TableView<Member>();
+    public void showTable() throws Exception {
+        //Load data from file
+        loadData();
 
-        //Columns
-        TableColumn memberColumn = new TableColumn<Member,String>("Name");
-        memberColumn.setCellValueFactory(new PropertyValueFactory<Member,String>("name"));
-        TableColumn dobColumn = new TableColumn<Member,String>("Date Of Birth");
-        dobColumn.setCellValueFactory(new PropertyValueFactory<Member,String>("dob"));
-        TableColumn planTypeColumn = new TableColumn<Member,String>("Plan Type");
-        planTypeColumn.setCellValueFactory(new PropertyValueFactory<Member,String>("membershipType"));
-        TableColumn genderColumn = new TableColumn<Member,String>("Gender");
-        genderColumn.setCellValueFactory(new PropertyValueFactory<Member,String>("gender"));
+        if (membersList.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("The record is empty, Please enter a member from member form\nto view table");
+            alert.showAndWait();
+
+        }else {
 
 
-        tableView.getColumns().add(memberColumn);
-        tableView.getColumns().add(genderColumn);
-        tableView.getColumns().add(dobColumn);
-        tableView.getColumns().add(planTypeColumn);
+            TableView tableView = new TableView<Member>();
 
-        tableView.setItems(membersList);
-        layout.setCenter(tableView);
+            //Columns
+            TableColumn memberColumn = new TableColumn<Member, String>("Name");
+            memberColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("name"));
+            TableColumn dobColumn = new TableColumn<Member, String>("Date Of Birth");
+            dobColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("dob"));
+            TableColumn planTypeColumn = new TableColumn<Member, String>("Plan Type");
+            planTypeColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("membershipType"));
+            TableColumn genderColumn = new TableColumn<Member, String>("Gender");
+            genderColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("gender"));
+
+
+            tableView.getColumns().add(memberColumn);
+            tableView.getColumns().add(genderColumn);
+            tableView.getColumns().add(dobColumn);
+            tableView.getColumns().add(planTypeColumn);
+
+            tableView.setItems(membersList);
+            layout.setCenter(tableView);
+        }
+    }
+
+    public void saveData(){
+        File file = new File("members.ser");
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+            List<Member> temp = new ArrayList<Member>(membersList);
+            oos.writeObject(temp);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadData(){
+        File file = new File("members.ser");
+        if(!file.exists()){
+            try{
+                file.createNewFile();
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            List<Member> temp = new ArrayList<>();
+            temp = (List<Member>) ois.readObject();
+
+            membersList = FXCollections.observableArrayList(temp);
+            ois.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 }
