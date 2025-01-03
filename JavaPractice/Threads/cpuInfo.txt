@@ -1,0 +1,11 @@
+CPU
+   -> Fetch: The CPU retrieves an instruction from memory.
+   -> Decode: The CPU interprets the instruction to understand what operation needs to be performed.
+   -> Execute: The CPU performs the operation, which could involve arithmetic calculations, data transfer, or logic operations.
+   -> Store: The result of the operation is written back to memory or a register
+
+*CPU Cores
+   A core is an individual processing unit within the CPU. Modern CPUs often have multiple cores (e.g., dual-core, quad-core, octa-core, etc.), which allows them to handle multiple tasks simultaneously. Each core can independently execute instructions, so a multi-core processor can perform many tasks in parallel, improving overall performance, especially for multi-threaded tasks.
+
+*CPU Threads
+ A thread is the smallest unit of execution within a process. It represents a single sequence of instructions executed by a CPU core. Hyper-Threading (in Intel processors) or Simultaneous Multi-Threading (SMT) (in AMD processors) allows a single core to handle more than one thread concurrently. This improves efficiency by making better use of the core's resources.
