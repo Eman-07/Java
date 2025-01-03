@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends Application {
+public class SerializationExample extends Application {
     BorderPane layout = new BorderPane();
     ObservableList<Member> membersList = FXCollections.observableArrayList();
 
@@ -157,7 +157,7 @@ public class Main extends Application {
 
 
             TableView tableView = new TableView<Member>();
-
+            tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             //Columns
             TableColumn memberColumn = new TableColumn<Member, String>("Name");
             memberColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("name"));
@@ -179,46 +179,43 @@ public class Main extends Application {
         }
     }
 
-    public void saveData(){
-        File file = new File("members.ser");
-        try{
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-            List<Member> temp = new ArrayList<Member>(membersList);
+    public void saveData() {
+        File file = new File("Data.ser");
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
+
+            List<Member> temp = new ArrayList<>(membersList);
             oos.writeObject(temp);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Data saved");
+
+
+        }catch (IOException e){
+            e.printStackTrace();
         }
+
     }
 
-    public void loadData(){
-        File file = new File("members.ser");
-        if(!file.exists()){
-            try{
+    public void loadData() {
+        File file = new File("Data.ser");
+        if (!file.exists()){
+            try {
                 file.createNewFile();
-
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-            List<Member> temp = new ArrayList<>();
-            temp = (List<Member>) ois.readObject();
-
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
+            List<Member> temp = ((ArrayList<Member>) ois.readObject());
             membersList = FXCollections.observableArrayList(temp);
-            ois.close();
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("data loaded");
+        }catch (IOException e){
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-
     }
+
+
+
 }
