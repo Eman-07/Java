@@ -1,0 +1,20 @@
+static is intially used for memory management
+
+static is linked with class
+
+it can be used wiht
+    -> blocks
+    -> variables
+    -> methods
+    -> inner classes (nested classes)
+
+-methods
+    static methods cannot use non static variables
+    in static methods non-static functions cannnot be called i.e is psvm we cannot call a non static function function of the same class
+    this & super cant be used in static
+    id we hava a child class that extends parent class and both of them has same static funtions with slight chnage, then the static function of referenced class will be executed
+
+
+-static blocks
+    static blocks of class executes when the class is laoded in memory
+    it is only executed once no matter how many instances of the class are created
